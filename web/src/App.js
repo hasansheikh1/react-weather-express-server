@@ -16,7 +16,7 @@ function App() {
         e.preventDefault();
 
         console.log("I am click handler")
-        axios.get(`${baseUrl}/weather`)
+        axios.get(`${baseUrl}/weather/${cityName}`)
             .then(response => {
                 console.log("response: ", response.data);
 
@@ -45,6 +45,8 @@ function App() {
 
                 <div>
                 Temperature: {Math.round(weatherData?.temp)}°C
+                <br/>
+                City: {weatherData?.city}
                 <br />
                 min: {Math.round(weatherData?.min)}°C
                 <br />

@@ -9,6 +9,7 @@ const app = express()
 const port = process.env.PORT || 5001;
 
 app.use(cors());
+app.use(express.json());
 
 app.get('/abc', (req, res) => {
 
@@ -16,11 +17,20 @@ app.get('/abc', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/weather', (req, res) => {
+//query parameters
+//http://localhost:5001/weather?city=karachi&zip=75600
+// app.get('/weather',(req,res)=>{
+//   console.log(req.query.city);
+//   console.log(req.query.zip);
+// })
+
+//using url parameters method
+app.get('/weather/:cityName', (req, res) => {
   console.log("request ip: ", req.ip);
-  // console.log("param: ", req.params.cityName);
+  console.log("param: ", req.params.cityName);
 
   res.send({
+      city:req.params.cityName,
       temp: 30,
       min:26,
       max:31,
